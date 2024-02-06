@@ -26,8 +26,14 @@ const FormStep3 = () => {
     previousEconomicActivity: Yup.string().required("Field is required"),
     // skills: Yup.string().required("Field is required"),
     currentEngagement: Yup.string().required("Field is required"),
-    monthlyIncome: Yup.string().required("Field is required"),
-    bankAccountNumber: Yup.string().required("Field is required"),
+    monthlyIncome: Yup.string()
+      .required("Monthly income is required")
+      .matches(/^[0-9]+$/, "Monthly income must not contain letters"),
+    bankAccountNumber: Yup.string()
+      .matches(/^[0-9]+$/, "Account number must not contain letters")
+      .required("Account number is required")
+      .min(10, "Account number must be at least 10 digits")
+      .max(10, "Account number must not exceed 10 digits"),
     useOfCredit: Yup.string().required("Field is required"),
     // detailsOfLoans: Yup.string().required("Field is required"),
     // membership: Yup.string().required("Field is reqmuired"),
@@ -59,8 +65,9 @@ const FormStep3 = () => {
           detailsOfLoans: values.detailsOfLoans,
           membership: values.membership,
         }));
-        localStorage.setItem("stepThreeFormValues", JSON.stringify(values));
-        router.push(`${pathname}?step=3`);
+        // localStorage.setItem("stepThreeFormValues", JSON.stringify(values));
+        router.push(`${pathname}?step=1`);
+        localStorage.clear();
       }}
     >
       {(formik) => {
@@ -114,7 +121,7 @@ const FormStep3 = () => {
                 <FormikController
                   control="input"
                   type="text"
-                  label="Average Monthly Income"
+                  label="Average Monthly Income (NGN)"
                   name="monthlyIncome"
                   value={formik.values.monthlyIncome}
                   onChange={formik.handleChange}

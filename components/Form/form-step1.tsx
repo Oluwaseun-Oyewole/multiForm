@@ -65,7 +65,7 @@ const FormStep1 = () => {
         return (
           <Form className="flex flex-col items-center justify-center">
             <div className="md:w-[85%]">
-              <div className="md:flex justify-between gap-4 py-4">
+              <div className="md:flex justify-between gap-4 py-3">
                 <div className="w-full div">
                   <FormikController
                     control="input"
@@ -120,7 +120,7 @@ const FormStep1 = () => {
                 </div>
               </div>
 
-              <div className="w-full div">
+              <div className="w-full div py-3">
                 <FormikController
                   control="input"
                   type="text"
@@ -133,31 +133,29 @@ const FormStep1 = () => {
                 />
               </div>
 
-              <div className="flex justify-between py-2">
-                <div className="w-full div">
-                  <FormikController
-                    control="select"
-                    type="select"
-                    label="Level Of Education: (e.g JSSCE, WASSCE, Bsc etc)"
-                    name="level"
-                    value={formik.values.level}
-                    onChange={(value: string) => {
-                      formik.setFieldValue("level", value);
-                    }}
-                    onBlur={() => formik.setFieldTouched("level", true)}
-                    placeholder="Please Select"
-                    options={[
-                      { label: "JSCE", value: "JSCE" },
-                      { label: "WASSCE", value: "WASSCE" },
-                      { label: "Bsc", value: "Bsc" },
-                      { label: "Masters", value: "Masters" },
-                      { label: "Phd", value: "Phd" },
-                    ]}
-                  />
-                </div>
+              <div className="w-full div py-2">
+                <FormikController
+                  control="select"
+                  type="select"
+                  label="Level Of Education: (e.g JSSCE, WASSCE, Bsc etc)"
+                  name="level"
+                  value={formik.values.level}
+                  onChange={(value: string) => {
+                    formik.setFieldValue("level", value);
+                  }}
+                  onBlur={() => formik.setFieldTouched("level", true)}
+                  placeholder="Please Select"
+                  options={[
+                    { label: "JSCE", value: "JSCE" },
+                    { label: "WASSCE", value: "WASSCE" },
+                    { label: "Bsc", value: "Bsc" },
+                    { label: "Masters", value: "Masters" },
+                    { label: "Phd", value: "Phd" },
+                  ]}
+                />
               </div>
 
-              <div className="w-full div">
+              <div className="w-full div py-2">
                 <FormikController
                   control="select"
                   type="select"

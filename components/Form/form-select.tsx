@@ -39,7 +39,7 @@ const FormSelect: React.FC<ISelect> = ({
             allowClear
             showSearch
             className={className}
-            style={{ width: "100%" }}
+            style={{ width: "100%", height: "60px" }}
             placeholder={placeholder}
             onChange={handleChange}
             onBlur={onBlur}

@@ -17,6 +17,7 @@ const FormTextArea: React.FC<IForms> = ({
   onBlur,
   name,
   value,
+  disabled,
   placeholder,
 }) => {
   const { TextArea } = Input;
@@ -34,6 +35,7 @@ const FormTextArea: React.FC<IForms> = ({
             name={name}
             cols={7}
             rows={7}
+            disabled={disabled}
           />
           <ErrorMessage
             name={name as string}

@@ -48,18 +48,14 @@ const data = [
   },
 ];
 
-const FormLayout = ({}: //   header,
-//   content,
-{
-  //   header: React.ReactNode;
-  //   content: React.ReactNode;
-}) => {
+const FormLayout = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const totalStepNumber = 3;
   const step = searchParams.get("step") ?? 1;
   const stepNumber = Number(step);
+  const scope = useMenuAnimation();
 
   const updateUrlStringOnPageLoad = (step: number) => {
     const sp = new URLSearchParams(searchParams);
@@ -86,7 +82,10 @@ const FormLayout = ({}: //   header,
     } else return "Enter your financial data appropriately";
   };
 
-  const scope = useMenuAnimation();
+  const variants = {
+    initial: { opacity: 0, y: -20 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+  };
 
   return (
     <>
@@ -95,13 +94,13 @@ const FormLayout = ({}: //   header,
           {
             <motion.div
               className="grid grid-flow-row lg:grid-flow-col lg:grid-cols-[30%_auto] w-full"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 0.7 } }}
+              variants={variants}
+              initial="initial"
+              animate="animate"
             >
               <div className="bg-base text-black w-full px-10 pt-10 h-[450px] md:h-screen sticky left-0 top-0 overflow-hidden z-50">
                 <Image src={Logo} alt="logo" />
-
-                <ul className="text-sm pt-20 flex flex-col gap-10">
+                <div className="text-sm pt-20 flex flex-col gap-10">
                   {data?.map((item, index) => {
                     return (
                       <div
@@ -141,7 +140,7 @@ const FormLayout = ({}: //   header,
                       </div>
                     );
                   })}
-                </ul>
+                </div>
               </div>
 
               <div className="px-10 pt-10">
