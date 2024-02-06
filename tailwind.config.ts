@@ -4,6 +4,8 @@ const colors = require("tailwindcss/colors");
 const COLORS = {
   base: "rgba(255,245,255,1)",
   primary: "rgba(83, 0, 84, 1)",
+  secondary: "rgba(119, 119, 119, 1)",
+  btn: "rgba(83, 0, 84, 1)",
 };
 
 const config: Config = {

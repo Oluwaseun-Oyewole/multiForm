@@ -1,6 +1,10 @@
+// import { AnimatePresence } from "framer-motion";
+import { FormProvider } from "@/context";
+import { ConfigProvider } from "antd";
 import type { Metadata } from "next";
 import { Poppins, Roboto } from "next/font/google";
 import "./globals.css";
+import Template from "./template";
 
 export const poppins = Poppins({
   weight: ["300", "500"],
@@ -26,7 +30,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} font-poppins`}>{children}</body>
+      {/* <AnimatePresence mode="wait" initial={false}> */}
+      <ConfigProvider
+        theme={{
+          token: {
+            fontFamily: `${poppins}`,
+          },
+        }}
+      >
+        <FormProvider>
+          <Template>
+            <body className={`${poppins.variable} font-poppins`}>
+              {children}
+            </body>
+          </Template>
+        </FormProvider>
+      </ConfigProvider>
+      {/* </AnimatePresence> */}
     </html>
   );
 }

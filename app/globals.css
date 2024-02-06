@@ -6,3 +6,12 @@
   padding: 0;
   margin: 0;
 }
+
+.ant-select-arrow {
+  /* padding-top: 20px !important;
+  padding-bottom: 20px !important; */
+}
+.ant-select-selector {
+  /* padding-top: 28px !important;
+  padding-bottom: 28px !important; */
+}
