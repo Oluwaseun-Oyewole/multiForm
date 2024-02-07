@@ -1,7 +1,9 @@
 "use client";
+import { poppins } from "@/app/layout";
 import Checked from "@/assets/check.svg";
 import Logo from "@/assets/logo.svg";
 import { useFormContext } from "@/context";
+import { ConfigProvider } from "antd";
 import { motion, stagger, useAnimate } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -120,100 +122,111 @@ const FormLayout = () => {
         </div>
       )}
 
-      {stepNumber <= 3 ? (
-        <div ref={scope} className="relative">
-          {
-            <motion.div
-              className="grid grid-flow-row lg:grid-flow-col lg:grid-cols-[30%_auto] w-full"
-              variants={variants}
-              initial="initial"
-              animate="animate"
-            >
-              <div className="bg-base text-black w-full px-10 pt-10 h-[450px] md:h-screen sticky left-0 top-0 overflow-hidden z-40">
-                <Image src={Logo} alt="logo" />
-                <div className="text-sm pt-20 flex flex-col gap-10">
-                  {data?.map((item, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className={`div flex gap-2 items-start opacity-100`}
-                      >
-                        <p
-                          className={`self-start border-2 ${
-                            stepNumber === item.id
-                              ? "border-primary"
-                              : "text-gray-400"
-                          } rounded-full w-8 h-8 flex items-center justify-center text-sm`}
+      <ConfigProvider
+        theme={{
+          token: {
+            fontFamily: `${poppins}`,
+          },
+        }}
+      >
+        {" "}
+        {stepNumber <= 3 ? (
+          <div ref={scope} className="relative">
+            {
+              <motion.div
+                className="grid grid-flow-row lg:grid-flow-col lg:grid-cols-[30%_auto] w-full"
+                variants={variants}
+                initial="initial"
+                animate="animate"
+              >
+                <div className="bg-base text-black w-full px-10 pt-10 h-[450px] md:h-screen sticky left-0 top-0 overflow-hidden z-40">
+                  <Image src={Logo} alt="logo" />
+                  <div className="text-sm pt-20 flex flex-col gap-10">
+                    {data?.map((item, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className={`div flex gap-2 items-start opacity-100`}
                         >
-                          {item.id}
-                        </p>
+                          <p
+                            className={`self-start border-2 ${
+                              stepNumber === item.id
+                                ? "border-primary"
+                                : "text-gray-400"
+                            } rounded-full w-8 h-8 flex items-center justify-center text-sm`}
+                          >
+                            {item.id}
+                          </p>
 
-                        <Link href={`${item.step}`}>
-                          <motion.div className="flex flex-col gap-2">
-                            <p
-                              className={`transition-all ease-in-out duration-200 text-gray-400 ${
-                                stepNumber === item.id &&
-                                "!text-primary text-lg font-bold"
-                              }`}
-                            >
-                              {item.title}
-                            </p>
-                            <p
-                              className={`transition-all ease-in-out duration-200 text-gray-400  ${
-                                stepNumber === item.id &&
-                                "!text-primary font-bold"
-                              }`}
-                            >
-                              {item.description}
-                            </p>
-                          </motion.div>
-                        </Link>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="px-10 pt-10">
-                <div
-                  className={`flex items-center ${
-                    stepNumber === 1 ? "justify-end" : "justify-between"
-                  }`}
-                >
-                  {stepNumber > 1 && (
-                    <p
-                      onClick={() => {
-                        stepNumber === 3
-                          ? router.push(`${pathname}?step=2`)
-                          : router.push(`${pathname}?step=1`);
-                      }}
-                      className="cursor-pointer"
-                    >
-                      Back
-                    </p>
-                  )}
-                  <div className="self-end flex items-end justify-end flex-col">
-                    <p className="text-secondary">
-                      Step 0{stepNumber}/0{totalStepNumber}
-                    </p>
-                    <p className="text-primary">{title()}</p>
+                          <Link href={`${item.step}`}>
+                            <motion.div className="flex flex-col gap-2">
+                              <p
+                                className={`transition-all ease-in-out duration-200 text-gray-400 ${
+                                  stepNumber === item.id &&
+                                  "!text-primary text-lg font-bold"
+                                }`}
+                              >
+                                {item.title}
+                              </p>
+                              <p
+                                className={`transition-all ease-in-out duration-200 text-gray-400  ${
+                                  stepNumber === item.id &&
+                                  "!text-primary font-bold"
+                                }`}
+                              >
+                                {item.description}
+                              </p>
+                            </motion.div>
+                          </Link>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-center pt-10 pb-5">
-                  <p className="text-primary text-xl">{title()}</p>
-                  <p className="text-gray-500 text-sm pt-1">{description()}</p>
+                <div className="px-10 pt-10">
+                  <div
+                    className={`flex items-center ${
+                      stepNumber === 1 ? "justify-end" : "justify-between"
+                    }`}
+                  >
+                    {stepNumber > 1 && (
+                      <p
+                        onClick={() => {
+                          stepNumber === 3
+                            ? router.push(`${pathname}?step=2`)
+                            : router.push(`${pathname}?step=1`);
+                        }}
+                        className="cursor-pointer"
+                      >
+                        Back
+                      </p>
+                    )}
+                    <div className="self-end flex items-end justify-end flex-col">
+                      <p className="text-secondary">
+                        Step 0{stepNumber}/0{totalStepNumber}
+                      </p>
+                      <p className="text-primary">{title()}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col items-center justify-center pt-10 pb-5">
+                    <p className="text-primary text-xl">{title()}</p>
+                    <p className="text-gray-500 text-sm pt-1">
+                      {description()}
+                    </p>
+                  </div>
+                  <Form />
                 </div>
-                <Form />
-              </div>
-            </motion.div>
-          }
-        </div>
-      ) : (
-        <div ref={scope}>
-          <InvalidRoute />
-        </div>
-      )}
+              </motion.div>
+            }
+          </div>
+        ) : (
+          <div ref={scope}>
+            <InvalidRoute />
+          </div>
+        )}
+      </ConfigProvider>
     </>
   );
 };

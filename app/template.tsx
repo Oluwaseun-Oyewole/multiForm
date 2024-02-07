@@ -1,3 +1,5 @@
+import { FormProvider } from "@/context";
+
 export default function Template({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return <FormProvider> {children}</FormProvider>;
 }
