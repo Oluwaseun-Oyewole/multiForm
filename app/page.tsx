@@ -7,7 +7,6 @@ export default function Home() {
   return (
     <motion.main>
       <Suspense>
-        {" "}
         <FormLayout />
       </Suspense>
     </motion.main>

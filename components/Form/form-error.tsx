@@ -6,8 +6,8 @@ type IFormErrorProps = {
 
 const FormError: FC<IFormErrorProps> = ({ error = "" }) => {
   return (
-    <p className="!text-btn mt-[5px] flex items-center text-sm">
-      <p className="!text-btn inline-block mr-1 text-base leading-4" />
+    <p className="!text-red-600 mt-[5px] flex items-center text-sm">
+      <p className="!text-red-600 inline-block mr-1 text-base leading-4" />
       {error}
     </p>
   );
