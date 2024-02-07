@@ -1,3 +1,4 @@
+"use client";
 import { useFormContext } from "@/context";
 import { Form, Formik } from "formik";
 import { usePathname, useRouter } from "next/navigation";
@@ -8,8 +9,9 @@ import FormikController from "./form-controller";
 const FormStep1 = () => {
   const router = useRouter();
   const pathname = usePathname();
+
   const getFormValuesFromLocalStorage =
-    window.localStorage &&
+    typeof window !== "undefined" &&
     JSON.parse(localStorage.getItem("formValues") || "{}");
 
   const { formValues, setFormValues } = useFormContext();

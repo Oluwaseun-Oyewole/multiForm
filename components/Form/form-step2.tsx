@@ -1,3 +1,4 @@
+"use client";
 import { useFormContext } from "@/context";
 import { Form, Formik } from "formik";
 import { usePathname, useRouter } from "next/navigation";
@@ -6,18 +7,17 @@ import Button from "../Button";
 import FormikController from "./form-controller";
 
 const FormStep2 = () => {
-  const getStepTwoFormValues = JSON.parse(
-    localStorage.getItem("stepTwoFormValues") || "{}"
-  );
+  const getStepTwoFormValues =
+    typeof window !== "undefined" &&
+    JSON.parse(localStorage.getItem("stepTwoFormValues") || "{}");
 
   const stepTwoFormValidity = Object.values(getStepTwoFormValues).every(
     (value) => value === ""
   );
 
-  let getFormValues;
-  if (typeof window !== "undefined") {
-    getFormValues = JSON.parse(localStorage.getItem("formValues") || "{}");
-  }
+  const getFormValues =
+    typeof window !== "undefined" &&
+    JSON.parse(localStorage.getItem("formValues") || "{}");
 
   const formValidity = Object.values(getFormValues).every(
     (value) => value === ""

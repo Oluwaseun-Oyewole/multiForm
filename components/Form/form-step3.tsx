@@ -1,3 +1,4 @@
+"use client";
 import { useFormContext } from "@/context";
 import { Form, Formik } from "formik";
 import { usePathname, useRouter } from "next/navigation";
@@ -7,12 +8,12 @@ import FormikController from "./form-controller";
 
 const FormStep3 = () => {
   const { openModal } = useFormContext();
-  const getFormValues = JSON.parse(
-    localStorage.getItem("stepTwoFormValues") || "{}"
-  );
-  const getStepThreeFormValues = JSON.parse(
-    localStorage.getItem("stepThreeFormValues") || "{}"
-  );
+  const getFormValues =
+    typeof window !== "undefined" &&
+    JSON.parse(localStorage.getItem("stepTwoFormValues") || "{}");
+  const getStepThreeFormValues =
+    typeof window !== "undefined" &&
+    JSON.parse(localStorage.getItem("stepThreeFormValues") || "{}");
   const formValidity = Object.values(getFormValues).every(
     (value) => value === ""
   );
