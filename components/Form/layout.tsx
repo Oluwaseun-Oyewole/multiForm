@@ -104,7 +104,11 @@ const FormLayout = () => {
             }, 1000);
           }}
         >
-          <div className="bg-white w-[400px] h-[350px] shadow-md flex flex-col items-center py-14 gap-10">
+          <motion.div
+            className="bg-white w-[400px] h-[350px] shadow-md flex flex-col items-center py-14 gap-10"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: [0.3, 0.5, 0.7, 1], y: 0 }}
+          >
             <Image src={Checked} alt="checked" className="" />
             <div className="text-lg">
               <p>Form Submitted Successfully</p>
@@ -112,7 +116,7 @@ const FormLayout = () => {
             <div className="w-1/2">
               <Button className="bg-btn ">Continue</Button>
             </div>
-          </div>
+          </motion.div>
         </div>
       )}
 

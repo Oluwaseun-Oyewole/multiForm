@@ -1,4 +1,3 @@
-// import { AnimatePresence } from "framer-motion";
 import { FormProvider } from "@/context";
 import { ConfigProvider } from "antd";
 import type { Metadata } from "next";
@@ -30,7 +29,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <AnimatePresence mode="wait" initial={false}> */}
       <ConfigProvider
         theme={{
           token: {
@@ -46,7 +44,6 @@ export default function RootLayout({
           </Template>
         </FormProvider>
       </ConfigProvider>
-      {/* </AnimatePresence> */}
     </html>
   );
 }
