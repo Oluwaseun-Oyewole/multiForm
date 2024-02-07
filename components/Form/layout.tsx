@@ -1,11 +1,14 @@
 "use client";
+import Checked from "@/assets/check.svg";
 import Logo from "@/assets/logo.svg";
+import { useFormContext } from "@/context";
 import { motion, stagger, useAnimate } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import Form from ".";
+import Button from "../Button";
 import InvalidRoute from "../error";
 
 const staggerMenuItems = stagger(0.25, { startDelay: 0.4 });
@@ -57,6 +60,8 @@ const FormLayout = () => {
   const stepNumber = Number(step);
   const scope = useMenuAnimation();
 
+  const { isOpen, closeModal } = useFormContext();
+
   const updateUrlStringOnPageLoad = (step: number) => {
     const sp = new URLSearchParams(searchParams);
     sp.set("step", step.toString());
@@ -89,6 +94,28 @@ const FormLayout = () => {
 
   return (
     <>
+      {isOpen && (
+        <div
+          className="fixed top-0 left-0 bg-base h-screen w-full z-50 overflow-hidden flex items-center justify-center"
+          onClick={() => {
+            window.location.reload();
+            setTimeout(() => {
+              closeModal();
+            }, 1000);
+          }}
+        >
+          <div className="bg-white w-[400px] h-[350px] shadow-md flex flex-col items-center py-14 gap-10">
+            <Image src={Checked} alt="checked" className="" />
+            <div className="text-lg">
+              <p>Form Submitted Successfully</p>
+            </div>
+            <div className="w-1/2">
+              <Button className="bg-btn ">Continue</Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {stepNumber <= 3 ? (
         <div ref={scope} className="relative">
           {
@@ -98,7 +125,7 @@ const FormLayout = () => {
               initial="initial"
               animate="animate"
             >
-              <div className="bg-base text-black w-full px-10 pt-10 h-[450px] md:h-screen sticky left-0 top-0 overflow-hidden z-50">
+              <div className="bg-base text-black w-full px-10 pt-10 h-[450px] md:h-screen sticky left-0 top-0 overflow-hidden z-40">
                 <Image src={Logo} alt="logo" />
                 <div className="text-sm pt-20 flex flex-col gap-10">
                   {data?.map((item, index) => {

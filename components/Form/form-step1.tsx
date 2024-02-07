@@ -8,9 +8,9 @@ import FormikController from "./form-controller";
 const FormStep1 = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const getFormValuesFromLocalStorage = JSON.parse(
-    localStorage.getItem("formValues") || "{}"
-  );
+  const getFormValuesFromLocalStorage =
+    window.localStorage &&
+    JSON.parse(localStorage.getItem("formValues") || "{}");
 
   const { formValues, setFormValues } = useFormContext();
   const validationSchemaStepOne = Yup.object({
@@ -22,12 +22,19 @@ const FormStep1 = () => {
       .min(4, "Name must be more than 4 characters"),
     phone: Yup.string()
       .trim()
-      .matches(/(?:\+234|0)[789][01]\d{8}$/, "Invalid phone format")
-      .matches(/^[0-9]{11}$/, "Phone number must be exactly 12 digits")
+      // .matches(
+      //   /(?:\+234|0)[789][01]\d{8}$/,
+      //   "Invalid phone format 1.e (070, 080, 090)"
+      // )
+      .matches(/^[0-9]{11}$/, "Phone number must be exactly 12 numbers")
       .required("Phone number is required"),
-    address: Yup.string().required("Please enter your address"),
+    address: Yup.string()
+      .required("Please enter your address")
+      .min(5, "Name must be more than 5 characters"),
     status: Yup.string().required("Please enter your marital status"),
-    maiden: Yup.string().required("Please enter your maiden name"),
+    maiden: Yup.string()
+      .required("Please enter your maiden name")
+      .min(4, "Name must be more than 4 characters"),
     level: Yup.string().required("Please enter your education level"),
   });
 
@@ -115,7 +122,7 @@ const FormStep1 = () => {
                     value={formik.values.phone}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    placeholder="Enter your phone number"
+                    placeholder="0813646873"
                   />
                 </div>
               </div>
@@ -129,7 +136,7 @@ const FormStep1 = () => {
                   value={formik.values.address}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  placeholder="Enter your phone number"
+                  placeholder="Enter your home address"
                 />
               </div>
 

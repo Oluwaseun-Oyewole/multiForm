@@ -45,7 +45,6 @@ const FormSelect: React.FC<ISelect> = ({
             onBlur={onBlur}
             options={options}
             {...props}
-            rootClassName=""
           />
           <ErrorMessage
             name={name as any}

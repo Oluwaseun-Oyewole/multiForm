@@ -30,6 +30,9 @@ interface FormContextType {
   setStepThreeFormValues: React.Dispatch<
     React.SetStateAction<Partial<FormValues>>
   >;
+  isOpen: boolean;
+  openModal: () => void;
+  closeModal: () => void;
 }
 
 const FormContext = createContext<FormContextType | undefined>(undefined);
@@ -72,6 +75,16 @@ export const FormProvider: React.FC<PropsWithChildren> = ({ children }) => {
     membership: "",
   });
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <FormContext.Provider
       value={{
@@ -81,6 +94,9 @@ export const FormProvider: React.FC<PropsWithChildren> = ({ children }) => {
         setStepTwoFormValues,
         stepThreeFormValues,
         setStepThreeFormValues,
+        isOpen,
+        openModal,
+        closeModal,
       }}
     >
       {children}

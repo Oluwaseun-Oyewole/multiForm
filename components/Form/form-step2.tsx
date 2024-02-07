@@ -6,16 +6,23 @@ import Button from "../Button";
 import FormikController from "./form-controller";
 
 const FormStep2 = () => {
-  const getFormValues = JSON.parse(localStorage.getItem("formValues") || "{}");
   const getStepTwoFormValues = JSON.parse(
     localStorage.getItem("stepTwoFormValues") || "{}"
   );
-  const formValidity = Object.values(getFormValues).every(
-    (value) => value === ""
-  );
+
   const stepTwoFormValidity = Object.values(getStepTwoFormValues).every(
     (value) => value === ""
   );
+
+  let getFormValues;
+  if (typeof window !== "undefined") {
+    getFormValues = JSON.parse(localStorage.getItem("formValues") || "{}");
+  }
+
+  const formValidity = Object.values(getFormValues).every(
+    (value) => value === ""
+  );
+
   const router = useRouter();
   const pathname = usePathname();
   const { stepTwoFormValues, setStepTwoFormValues } = useFormContext();
@@ -29,8 +36,8 @@ const FormStep2 = () => {
       .min(4, "Name must be more than 4 characters"),
     phone: Yup.string()
       .trim()
-      .matches(/(?:\+234|0)[789][01]\d{8}$/, "Invalid phone format")
-      .matches(/^[0-9]{11}$/, "Phone number must be exactly 12 digits")
+      // .matches(/(?:\+234|0)[789][01]\d{8}$/, "Invalid phone format")
+      .matches(/^[0-9]{11}$/, "Phone number must be exactly 12 numbers")
       .required("Phone number is required"),
     gender: Yup.string().required("Please enter your gender"),
     level: Yup.string().required("Please enter your education level"),
@@ -105,6 +112,7 @@ const FormStep2 = () => {
                     options={[
                       { label: "Male", value: "Male" },
                       { label: "Female", value: "Female" },
+                      { label: "Prefer not to say", value: "none" },
                     ]}
                     onChange={(value: string) => {
                       formik.setFieldValue("gender", value);
