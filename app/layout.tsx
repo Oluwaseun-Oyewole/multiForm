@@ -1,18 +1,6 @@
-import { Poppins, Roboto } from "next/font/google";
+import { poppins } from "./font";
 import "./globals.css";
 import Template from "./template";
-
-export const poppins = Poppins({
-  weight: ["300", "500"],
-  subsets: ["latin"],
-  variable: "--font-poppins",
-});
-
-export const roboto = Roboto({
-  weight: ["300", "500"],
-  subsets: ["latin"],
-  variable: "--font-roboto",
-});
 
 // export const metadata: Metadata = {
 //   title: "Stepper Form",

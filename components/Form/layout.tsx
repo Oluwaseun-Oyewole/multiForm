@@ -1,5 +1,5 @@
 "use client";
-import { poppins } from "@/app/layout";
+import { poppins } from "@/app/font";
 import Checked from "@/assets/check.svg";
 import Logo from "@/assets/logo.svg";
 import { useFormContext } from "@/context";
