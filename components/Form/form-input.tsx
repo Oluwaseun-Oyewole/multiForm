@@ -26,7 +26,7 @@ export default function FormInput({
         <>
           <Input
             className="py-[17px] rounded-[5px] border-gray-300 border-[1.3px] focus:border-btn hover:border-btn"
-            value={value}
+            value={value || undefined}
             placeholder={placeholder}
             onChange={onChange && onChange}
             onBlur={onBlur}

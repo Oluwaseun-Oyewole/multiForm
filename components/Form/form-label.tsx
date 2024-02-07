@@ -5,7 +5,7 @@ type Props = {
   label?: string;
 };
 
-const Label: FC<Props> = ({ label }) => {
+const Label: FC<Props> = ({ label = "" }) => {
   return (
     label && (
       <div className={twMerge("flex items-center mb-[12px] max-2xl:mb-[8px]")}>

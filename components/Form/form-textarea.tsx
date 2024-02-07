@@ -28,7 +28,7 @@ const FormTextArea: React.FC<IForms> = ({
         <>
           <TextArea
             className="w-full rounded-[5px] bg-white border-[1.3px] focus:border-btn hover:border-btn"
-            value={value}
+            value={value || undefined}
             placeholder={placeholder}
             onChange={onChange}
             onBlur={onBlur}

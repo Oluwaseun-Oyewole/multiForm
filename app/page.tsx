@@ -61,9 +61,7 @@ export default function Home() {
   const step = searchParams.get("step") ?? 1;
   const stepNumber = Number(step);
   const scope = useMenuAnimation();
-
   const { isOpen, closeModal } = useFormContext();
-
   const updateUrlStringOnPageLoad = (step: number) => {
     const sp = new URLSearchParams(searchParams);
     sp.set("step", step.toString());

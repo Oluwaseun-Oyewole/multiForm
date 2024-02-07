@@ -7,7 +7,7 @@ type IProps = { isLoading?: boolean } & ButtonHTMLAttributes<HTMLButtonElement>;
 export default function Button({
   children,
   className,
-  isLoading,
+  isLoading = false,
   ...rest
 }: IProps) {
   return (
