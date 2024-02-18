@@ -1,11 +1,8 @@
 "use client";
 import { poppins } from "@/app/font";
-import Checked from "@/assets/check.svg";
-import Logo from "@/assets/logo.svg";
 import { useFormContext } from "@/context";
 import { ConfigProvider } from "antd";
 import { motion, stagger, useAnimate } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
@@ -107,16 +104,16 @@ const FormLayout = () => {
           }}
         >
           <motion.div
-            className="bg-white w-[400px] h-[350px] shadow-md flex flex-col items-center py-14 gap-10"
+            className="bg-white w-[400px] shadow-md flex flex-col items-center py-10 gap-7"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: [0.3, 0.5, 0.7, 1], y: 0 }}
           >
-            <Image src={Checked} alt="checked" className="" />
-            <div className="text-lg">
+            {/* <Image src={Checked} alt="checked" className="" /> */}
+            <div className="text-sm">
               <p>Form Submitted Successfully</p>
             </div>
             <div className="w-1/2">
-              <Button className="bg-btn ">Continue</Button>
+              <Button className="bg-btn !text-sm">Continue</Button>
             </div>
           </motion.div>
         </div>
@@ -139,7 +136,7 @@ const FormLayout = () => {
                 animate="animate"
               >
                 <div className="bg-base text-black w-full px-10 pt-10 h-[450px] lg:h-screen sticky left-0 top-0 overflow-hidden z-40">
-                  <Image src={Logo} alt="logo" />
+                  {/* <Image src={Logo} alt="logo" /> */}
                   <div className="text-sm pt-20 flex flex-col gap-10">
                     {data?.map((item, index) => {
                       return (
