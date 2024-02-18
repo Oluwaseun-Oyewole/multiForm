@@ -135,9 +135,8 @@ const FormLayout = () => {
                 initial="initial"
                 animate="animate"
               >
-                <div className="bg-base text-black w-full px-10 pt-10 h-[450px] lg:h-screen sticky left-0 top-0 overflow-hidden z-40">
-                  {/* <Image src={Logo} alt="logo" /> */}
-                  <div className="text-sm pt-20 flex flex-col gap-10">
+                <div className="bg-base text-black w-full px-5 py-10 md:py-16 lg:py-0 md:px-10 md:pt-10 lg:h-screen sticky left-0 top-0 overflow-hidden z-40">
+                  <div className="text-sm pt-10 pb:20 lg:pb-0 lg:pt-20 flex flex-col gap-10">
                     {data?.map((item, index) => {
                       return (
                         <div
@@ -180,7 +179,7 @@ const FormLayout = () => {
                   </div>
                 </div>
 
-                <div className="px-10 pt-10">
+                <div className="px-5 lg:px-10 pt-10">
                   <div
                     className={`flex items-center ${
                       stepNumber === 1 ? "justify-end" : "justify-between"

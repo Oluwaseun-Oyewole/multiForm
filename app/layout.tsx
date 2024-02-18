@@ -13,7 +13,6 @@ export default function RootLayout({
         <title>Stepper Form</title>
         <meta name="Stepper Form" content="Description" />
       </head>
-
       <FormProvider>
         <body className={`${poppins.variable} font-poppins`}>{children}</body>
       </FormProvider>
