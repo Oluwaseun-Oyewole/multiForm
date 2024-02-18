@@ -126,7 +126,7 @@ const FormLayout = () => {
           },
         }}
       >
-        {stepNumber <= 3 ? (
+        {stepNumber > 0 && stepNumber <= 3 ? (
           <div ref={scope} className="relative">
             {
               <motion.div
